@@ -21,7 +21,7 @@
 <script>
 import _ from 'lodash'
 export default {
-  name: 'Lodash',
+  name: 'arrayLodash',
   data () {
     return {
       lodashData: [
