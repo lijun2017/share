@@ -26,7 +26,7 @@ const routes = [
   {
     path: '/rules',
     name: 'Rules',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Rules.vue')
+    component: () => import('../views/Rules/index.vue')
   },
   {
     path: '/vuex',
