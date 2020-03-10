@@ -1,6 +1,5 @@
 <template>
   <div class="object-lodash">
-    <div class="tip"> 集合的方法的有很多和js的array方法类似，但大多数情况也可以对对象调用，但是注意操作对象时迭代顺序无法保证。下表只展示了两个方法，更多方法自己去找一下</div><br/>
     <el-table
     :data="lodashData"
     border
