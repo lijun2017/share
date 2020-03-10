@@ -1,66 +1,50 @@
 <template>
-  <div class="array-lodash">
+  <div class="collection-lodash">
+    <div class="tip"> 集合的方法的有很多和js的array方法类似，但大多数情况也可以对对象调用，但是注意操作对象时迭代顺序无法保证。下表只展示了两个方法，更多方法自己去找一下</div><br/>
     <el-table
     :data="lodashData"
     border
     style="width: 100%">
       <template v-for="(item, index) in keys">
+        <el-table-column v-if="item.key === 'example' || item.key === 'result'" :label="item.label" :key="index">
+          <template slot-scope="scope">
+            <div v-html="scope.row.example" v-if="item.key === 'example'"></div>
+            <div v-html="scope.row.result" v-if="item.key === 'result'"></div>
+          </template>
+        </el-table-column>
         <el-table-column
+          v-else
           :prop="item.key"
           :label="item.label"
           :type="item.type"
           :key="index"
           :column-key="item.key"
           :formatter="item.formatter"
-        ></el-table-column>
+        >
+        </el-table-column>
       </template>
     </el-table>
   </div>
 </template>
 
 <script>
-import _ from 'lodash'
+// import _ from 'lodash'
 export default {
-  name: 'Lodash',
+  name: 'collectionLodash',
   data () {
     return {
       lodashData: [
         {
-          name: '_.chunk(array, [size=1])',
-          introduction: '将数组（array）拆分成多个 size 长度的区块，并将这些区块组成一个新数组。 如果array 无法被分割成全部等长的区块，那么最后剩余的元素将组成一个区块。',
-          example: "_.chunk(['a', 'b', 'c', 'd'], 3)",
-          result: JSON.stringify(_.chunk(['a', 'b', 'c', 'd'], 3))
+          name: '_.forEach(collection, [iteratee=_.identity])',
+          introduction: '调用 iteratee 遍历 collection(集合) 中的每个元素， iteratee 调用3个参数： (value, index|key, collection)。 如果迭代函数（iteratee）显式的返回 false ，迭代会提前退出。',
+          example: "_([1, 2]).forEach(function(value){<br/> console.log(value) <br/>});<br/> _.forEach({ 'a': 1, 'b': 2 }, function(value, key) {<br/> console.log(key)<br/>});",
+          result: "Logs `1` then `2`;<br/> Logs 'a' then 'b' (iteration order is not guaranteed:迭代顺序没有保证)."
         },
         {
-          name: '_.flatten(array)',
-          introduction: '减少一级array嵌套深度。',
-          example: '_.flatten([1, [2, [3, [4]], 5]])',
-          result: JSON.stringify(_.flatten([1, [2, [3, [4]], 5]]))
-        },
-        {
-          name: '_.flattenDeep(array)',
-          introduction: '将array递归为一维数组。',
-          example: '_.flattenDeep([1, [2, [3, [4]], 5]])',
-          result: JSON.stringify(_.flattenDeep([1, [2, [3, [4]], 5]]))
-        },
-        {
-          name: '_.flattenDepth(array, [depth=1])',
-          introduction: '根据 depth 递归减少 array 的嵌套层级。',
-          example: '_.flattenDeep([1, [2, [3, [4]], 5]], 2)',
-          result: JSON.stringify(_.flattenDepth([1, [2, [3, [4]], 5]], 2)),
-          remark: 'es9的数组有个新方法，arr.flat(num), 可以拉平数组，但是兼容性可能有待提高'
-        },
-        {
-          name: '_.without(array, [values])',
-          introduction: '创建一个剔除所有给定值的新数组，剔除值的时候，使用SameValueZero做相等比较。',
-          example: '_.without([2, 1, 2, 3], 1, 2)',
-          result: JSON.stringify(_.without([2, 1, 2, 3], 1, 2))
-        },
-        {
-          name: '_.uniq(array)',
-          introduction: '创建一个去重后的array数组副本。使用了 SameValueZero 做等值比较。只有第一次出现的元素才会被保留。',
-          example: '_.uniq([2, 1, 2])',
-          result: JSON.stringify(_.uniq([2, 1, 2]))
+          name: '_.map(collection, [iteratee=_.identity])',
+          introduction: '创建一个数组， value（值） 是 iteratee（迭代函数）遍历 collection（集合）中的每个元素后返回的结果。 iteratee（迭代函数）调用3个参数：(value, index|key, collection).',
+          example: "function square(n) {<br/>return n * n;<br/>}<br/>_.map([4, 8], square)<br/>_.map({ 'a': 4, 'b': 8 }, square)",
+          result: '[16, 64];<br/> [16, 64] (iteration order is not guaranteed:迭代顺序没有保证).'
         }
       ]
     }
@@ -95,4 +79,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.tip {
+  color: red;
+}
 </style>
