@@ -21,7 +21,7 @@ const routes = [
   {
     path: '/lodash',
     name: 'Lodash',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Lodash.vue')
+    component: () => import('../views/Lodash/index.vue')
   },
   {
     path: '/rules',
