@@ -9,6 +9,7 @@
     <hr>
     <module2></module2>
     <hr>
+    <hr>
     <div>
       {{localstorageTest}}
     </div>
