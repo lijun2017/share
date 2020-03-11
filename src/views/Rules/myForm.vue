@@ -1,103 +1,108 @@
 <template>
-  <el-form ref="mainForm" :model="form" :rules="rules" label-position="right" label-width="130px">
-    <el-row>
-      <el-col :span="12">
-        <el-form-item prop="title" label="质检主题">
-          <el-input v-model.trim="form.title" class="inputWidth"></el-input>
-        </el-form-item>
-      </el-col>
-    </el-row>
-    <el-row v-for="(item1, index1) in form.list" :key="item1.key" class="form-area">
+  <div class="rules-page">
+    <el-form ref="mainForm" :model="form" :rules="rules" label-position="right" label-width="130px">
       <el-row>
-        <el-col :span="8">
-          <el-form-item
-            label="质检项目类型"
-            :prop="'list.' + index1 + '.name'"
-            :rules="rules1.name"
-          >
-            <el-input v-model="item1.name" class="inputWidth"></el-input>
+        <el-col :span="12">
+          <el-form-item prop="title" label="质检主题">
+            <el-input v-model.trim="form.title" class="inputWidth"></el-input>
           </el-form-item>
         </el-col>
-        <el-col :span="8">
-          <el-form-item
-            label="总分值"
-            :prop="'list.' + index1 + '.score'"
-            :rules="rules1.score"
-          >
-            <el-input v-model.number="item1.score" class="inputWidth"></el-input>
-          </el-form-item>
-        </el-col>
-        <el-button
-          type="primary"
-          plain
-          @click.prevent="add1()"
-          v-if="index1 === 0"
-          class="fr"
-          style="margin-left: 20px"
-        >新增质检项目类型</el-button>
-        <el-button
-          type="danger"
-          plain
-          @click.prevent="remove1(item1)"
-          v-if="index1 > 0"
-          class="fr"
-        >删除质检项目类型</el-button>
       </el-row>
-      <section
-        v-for="(item2, index2) in item1.list"
-        :key="item2.key"
-        style="padding:10px; background-color: #F2F2F2; margin-bottom: 10px"
-      >
+      <el-row v-for="(item1, index1) in form.list" :key="item1.key" class="form-area">
         <el-row>
           <el-col :span="8">
             <el-form-item
-              :label="'二级质检类型'+(index2+1)"
-              :prop="'list.' + index1 + '.list.' + index2 + '.name'"
-              :rules="rules2.name"
+              label="质检项目类型"
+              :prop="'list.' + index1 + '.name'"
+              :rules="rules1.name"
             >
-              <el-input v-model="item2.name" class="inputWidth"></el-input>
+              <el-input v-model="item1.name" class="inputWidth"></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="16">
+          <el-col :span="8">
             <el-form-item
-              label="大项分值"
-              :prop="'list.' + index1 + '.list.' + index2 + '.score'"
-              :rules="rules2.score(index1)"
+              label="总分值"
+              :prop="'list.' + index1 + '.score'"
+              :rules="rules1.score"
             >
-              <el-input v-model.number="item2.score" class="inputWidth"></el-input>
-              <el-button
-                type="primary"
-                plain
-                @click.prevent="add2(index1, item2)"
-                class="fr"
-                style="margin-left: 20px"
-                v-if="index2 === 0"
-              >新增二级质检项目类型</el-button>
-              <el-button
-                type="danger"
-                plain
-                @click.prevent="remove2(index1, item2)"
-                style="margin-left: 20px"
-                v-if="index2 > 0"
-                class="fr"
-              >删除二级质检项目类型</el-button>
+              <el-input v-model.number="item1.score" class="inputWidth"></el-input>
             </el-form-item>
           </el-col>
+          <el-button
+            type="primary"
+            plain
+            @click.prevent="add1()"
+            v-if="index1 === 0"
+            class="fr"
+            style="margin-left: 20px"
+          >新增质检项目类型</el-button>
+          <el-button
+            type="danger"
+            plain
+            @click.prevent="remove1(item1)"
+            v-if="index1 > 0"
+            class="fr"
+          >删除质检项目类型</el-button>
         </el-row>
-        <el-row>
-          <el-col :span="16">
-            <el-form-item
-              label="内容/定义"
-              :prop="'list.' + index1 + '.list.' + index2 + '.content'"
-              :rules="rules2.content"
-            >
-              <el-input v-model="item2.content"></el-input>
-            </el-form-item>
-          </el-col>
-        </el-row>
-      </section>
-    </el-row>
-  </el-form>
+        <section
+          v-for="(item2, index2) in item1.list"
+          :key="item2.key"
+          style="padding:10px; background-color: #F2F2F2; margin-bottom: 10px"
+        >
+          <el-row>
+            <el-col :span="8">
+              <el-form-item
+                :label="'二级质检类型'+(index2+1)"
+                :prop="'list.' + index1 + '.list.' + index2 + '.name'"
+                :rules="rules2.name"
+              >
+                <el-input v-model="item2.name" class="inputWidth"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="16">
+              <el-form-item
+                label="大项分值"
+                :prop="'list.' + index1 + '.list.' + index2 + '.score'"
+                :rules="rules2.score(index1)"
+              >
+                <el-input v-model.number="item2.score" class="inputWidth"></el-input>
+                <el-button
+                  type="primary"
+                  plain
+                  @click.prevent="add2(index1, item2)"
+                  class="fr"
+                  style="margin-left: 20px"
+                  v-if="index2 === 0"
+                >新增二级质检项目类型</el-button>
+                <el-button
+                  type="danger"
+                  plain
+                  @click.prevent="remove2(index1, item2)"
+                  style="margin-left: 20px"
+                  v-if="index2 > 0"
+                  class="fr"
+                >删除二级质检项目类型</el-button>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="16">
+              <el-form-item
+                label="内容/定义"
+                :prop="'list.' + index1 + '.list.' + index2 + '.content'"
+                :rules="rules2.content"
+              >
+                <el-input v-model="item2.content"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </section>
+      </el-row>
+    </el-form>
+    <div>
+      <el-button @click="doAdd">验证规则</el-button>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -135,18 +140,20 @@ export default {
   computed: {
     rules () {
       return {
-        title: []
+        title: [
+          { required: true, message: '请输入主题名称', trigger: 'blur' }
+        ]
       }
     },
     rules1 () {
       return {
-        name: [],
-        score: []
+        name: [{ required: true, message: '请输入质检项目类型', trigger: 'blur' }],
+        score: [{ required: true, message: '请输入总分值', trigger: 'blur' }]
       }
     },
     rules2 () {
       return {
-        name: [],
+        name: [{ required: true, message: '请输入二级质检项目类型', trigger: 'blur' }],
         score: (index1) => {
           const index = index1
           return [
@@ -155,7 +162,8 @@ export default {
                 return this.validateProjectTotal(rule, form, callback, source, options, index)
               },
               trigger: 'blur'
-            }
+            },
+            { required: true, message: '请输入大项分值', trigger: 'blur' }
           ]
         }
       }
@@ -220,7 +228,9 @@ export default {
 
     doAdd () {
       this.$refs.mainForm.validate(valid => {
-
+        if (valid) {
+          alert(JSON.stringify(this.form))
+        }
       })
     },
 
@@ -254,6 +264,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.rules-page {
+  text-align: left;
+}
 .form-area {
   padding: 10px;
   margin-bottom: 10px;
