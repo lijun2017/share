@@ -196,6 +196,7 @@ export default {
         this.form.list.splice(index, 1)
       }
     },
+    // https://github.com/yiminghe/async-validator
     validateProjectTotal (rule, form, callback, source, options, index1) {
       const arr = this.form.list[index1].list.map(v => v.score)
       const sum = _.sum(arr)
