@@ -1,5 +1,5 @@
 <template>
-  <div class="rules">
+  <div class="rules-page">
     <el-tabs
        v-model="activeName"
        @tab-click="handleClick"
@@ -36,6 +36,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.rules-page {
+  text-align: left;
+}
 .form-area {
   padding: 10px;
   margin-bottom: 10px;

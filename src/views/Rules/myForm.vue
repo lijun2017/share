@@ -1,5 +1,5 @@
 <template>
-  <div class="rules-page">
+  <div>
     <el-form ref="mainForm" :model="form" :rules="rules" label-position="right" label-width="130px">
       <el-row>
         <el-col :span="12">
@@ -264,9 +264,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.rules-page {
-  text-align: left;
-}
 .form-area {
   padding: 10px;
   margin-bottom: 10px;
