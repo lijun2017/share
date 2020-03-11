@@ -9,7 +9,14 @@
     <hr>
     <module2></module2>
     <hr>
-    <hr>
+    <el-button
+      @click="addStorage"
+      class="add-btn"
+    >添加Storage</el-button>
+    <el-button
+      @click="deleteStorage"
+      class="add-btn"
+    >删除Storage</el-button>
     <div>
       {{localstorageTest}}
     </div>
@@ -28,11 +35,23 @@ export default {
   },
   data () {
     return {
-      localstorageTest: ''
     }
   },
-  mounted () {
-    this.localstorageTest = JSON.stringify(storage.get('test'))
+  computed: {
+    localstorageTest () {
+      return JSON.stringify(storage.get('test'))
+    }
+  },
+  methods: {
+    addStorage () {
+      storage.set('test', {
+        name: 'lijun',
+        age: 25
+      })
+    },
+    deleteStorage () {
+      storage.remove('test')
+    }
   }
 }
 </script>
