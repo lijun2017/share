@@ -8,17 +8,30 @@
     <module1></module1>
     <hr>
     <module2></module2>
+    <hr>
+    <div>
+      {{localstorageTest}}
+    </div>
   </div>
 </template>
 
 <script>
 import module1 from './module1/index'
 import module2 from './module2/index'
+import storage from '../../utils/storage'
 export default {
   name: 'Vuex',
   components: {
     module1,
     module2
+  },
+  data () {
+    return {
+      localstorageTest: ''
+    }
+  },
+  mounted () {
+    this.localstorageTest = JSON.stringify(storage.get('test'))
   }
 }
 </script>
