@@ -109,12 +109,5 @@ module.exports = {
 
   // 模式
   mode: 'production', // development production
-  devServer: {
-    contentBase: resolve(__dirname, 'build'),
-    compress: true, // 启动gzip压缩
-    port: 3001, // 服务器端口
-    open: true, // 自动打开浏览器
-    hot: true // 开启HMR功能
-  },
-  devtool: 'cheap-source-map'
+  devtool: 'source-map'
 }

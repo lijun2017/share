@@ -1,3 +1,6 @@
+import $ from 'jquery'
+console.log($)
+
 export function mul (x, y) {
     return x * y
 }
