@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>async1</title>
+</head>
+
+<body>
+
+</body>
+<script>
+function* myGenerator() {
+  yield '1'
+  yield '2'
+  return '3'
+}
+
+const gen = myGenerator();  // 获取迭代器
+gen.next()  //{value: "1", done: false}
+gen.next()  //{value: "2", done: false}
+gen.next()  //{value: "3", done: true}
+
+
+</script>
+
+</html>

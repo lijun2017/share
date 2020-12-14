@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  function a () {
+    console.log(1)
+    return 1
+  }
+  function b () {
+    return new Promise((res, rej) => {
+      setTimeout(() => {
+        console.log(2)
+        res(2)
+      })
+    })
+  }
+  let r = Promise.race([a(), b()])
+  console.log(r.then(res=> 
+    console.log(res)
+  ))
+</script>
+</html>
